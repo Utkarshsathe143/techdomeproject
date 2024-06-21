@@ -17,9 +17,8 @@ Run docker-compose up
 
 Kubernetes
 
-Ensure Minikube and kubectl are installed.
-Start Minikube with `minikube start`.
-Apply the Kubernetes manifests:
+type minikube start
+Apply the Kubernetes files:
 
    kubectl apply -f backend-deployment.yaml
     kubectl apply -f frontend-deployment.yaml
