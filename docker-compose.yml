@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./Techdome-frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./Techdome-frontend:/app
+    command: sh -c "npm install && npm start"
+
+  backend:
+    build:
+      context: ./Techdome-backend
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    environment:
+      - MONGO_URI=mongodb://database:27017/mydatabase
+    volumes:
+      - ./Techdome-backend:/app
+    command: sh -c "npm install && npm start"
+
+  database:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
